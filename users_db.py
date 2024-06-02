@@ -37,3 +37,6 @@ def addUser(u: User):
     except Error as e:
         print(e)
         return False
+
+def addShed(sched: Schedule, u: User):
+    pass

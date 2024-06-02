@@ -1,1 +1,2 @@
 TOKEN = '7240049089:AAE9PqSasRNUFV0wfmAhNcD_AQRchVABl_s'
+AVAILABLE_PLACES = ["tg", "vk", "ad"]
