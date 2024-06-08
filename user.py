@@ -79,3 +79,11 @@ class User:
     def service(self, value: str):
         self.__service = value
 
+def parseShed(line: str):
+    books = line.split("|")
+    sh = []
+    for book in books:
+        li = book.split('*')
+        if len(li) == 4:
+            sh.append(Schedule(li[0], li[1], li[2], li[3] == 'True'))
+    return sh

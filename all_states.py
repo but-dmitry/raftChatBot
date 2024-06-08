@@ -5,3 +5,4 @@ class BotStates(StatesGroup):
     add_book_name = State()
     add_author = State()
     add_read = State()
+    add_esse = State()
