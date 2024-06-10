@@ -24,8 +24,8 @@ def isExist(u: User):
     try:
         cursor.execute(f'SELECT * FROM users WHERE tg_id = {u.tg_id}')
         for row in cursor:
-            if not(row[1] in activeUsers) and len(row) == 4:
-                activeUsers[row[1]] = User(row[1], user.parseShed(row[2]), row[3])
+            if len(row) == 4 and not(row[1] in activeUsers):
+                activeUsers[row[1]] = User(row[1], user.parseShed(row[2]), row[3], "en")
             return True
         return False
     except Error as e:
@@ -42,14 +42,16 @@ def addUser(u: User):
         print(e)
         return False
 
-def addShed(u: User):
+def updateSched(u: User):
     usersBase = createConnection("./data/users.sqlite")
     cursor = usersBase.cursor()
+
     try:
         cursor.execute(
-            f'UPDATE users SET schedule = schedule || \'{u.schedule[len(u.schedule)-1]}\' WHERE tg_id = {u.tg_id}')
+            f'UPDATE users SET schedule = \'{u.schedule[0]}\' WHERE tg_id = {u.tg_id}')
+        for i in range(1, len(u.schedule)):
+            cursor.execute(f'UPDATE users SET schedule = schedule || \'{u.schedule[i]}\' WHERE tg_id = {u.tg_id}')
         usersBase.commit()
     except Error as e:
         print(e)
         return False
-
