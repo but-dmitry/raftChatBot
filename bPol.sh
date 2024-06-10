@@ -5,7 +5,7 @@ finish=0
 while [ '$finish' != '1' ]
 do
 
-python body.py
+python main.py
 sleep 1
 
 done
